@@ -14,30 +14,6 @@ namespace Opx.Blazor.Maui.Tools
 		public AppViewSetting(MauiAppBuilder builder)
 		{
 			_builder = builder;
-			_builder.ConfigureMauiHandlers(h =>
-			{
-#if ANDROID
-				h.AddHandler<RefreshView, AndroidRefreshViewHandler>();
-#endif
-			});
-		}
-
-		public AppViewSetting RemoveBounce()
-		{
-#if ANDROID
-			_builder.ConfigureMauiHandlers(h =>
-			{
-				h.AddHandler<RefreshView, AndroidRefreshViewHandler>();
-				h.AddHandler<BlazorWebView, AndroidRemoveBounceHandler>();
-			});
-#elif IOS
-				_builder.ConfigureMauiHandlers(h =>
-				{
-					h.AddHandler<CollectionView, iOSRemoveBounceHandler>();
-				});
-#endif
-
-			return this;
 		}
 	}
 
