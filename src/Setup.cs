@@ -1,4 +1,5 @@
 ﻿#if ANDROID
+using CommunityToolkit.Maui;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 using Opx.Blazor.Maui.Tools.Platforms.Android;
 #elif IOS
