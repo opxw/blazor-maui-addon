@@ -1,26 +1,16 @@
 ﻿#if ANDROID
 using CommunityToolkit.Maui;
-using Microsoft.AspNetCore.Components.WebView.Maui;
 using Opx.Blazor.Maui.Tools.Platforms.Android;
+using Opx.Blazor.Maui.Tools.Toolkit;
 #elif IOS
 using Opx.Blazor.Maui.Tools.Platforms.iOS;
 #endif
 
 namespace Opx.Blazor.Maui.Tools
 {
-	public class AppViewSetting
-	{
-		private MauiAppBuilder _builder;
-
-		public AppViewSetting(MauiAppBuilder builder)
-		{
-			_builder = builder;
-		}
-	}
-
 	public static class SetupExtension
 	{
-		public static void RegisterMauiTools(this MauiAppBuilder builder)
+		public static void RegisterBlazorMaui(this MauiAppBuilder builder)
 		{
 #if ANDROID
 			builder.Services.AddSingleton<IDeviceInfoService, AndroidDeviceInfoService>();
@@ -29,9 +19,10 @@ namespace Opx.Blazor.Maui.Tools
 #endif
 		}
 
-		public static AppViewSetting ViewSettings(this MauiAppBuilder b)
+		public static MauiApp AddBlazorToolkit(this MauiApp b)
 		{
-			return new AppViewSetting(b);
+			ToolkitServices.Initialize(b.Services);
+			return b;
 		}
 	}
 }
